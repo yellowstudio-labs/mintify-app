@@ -3,6 +3,7 @@ import SwiftUI
 /// View for Disk Space Visualizer feature
 struct DiskVisualizerView: View {
     @EnvironmentObject var state: DiskSpaceState
+    @ObservedObject var themeManager = ThemeManager.shared
     
     var body: some View {
         ZStack {
@@ -96,7 +97,7 @@ struct DiskVisualizerView: View {
                         Text("Scan")
                     }
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(
@@ -191,7 +192,7 @@ struct DiskVisualizerView: View {
                     Text("Scan")
                 }
                 .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 24)
                 .padding(.vertical, 10)
                 .background(
@@ -376,6 +377,9 @@ struct DiskVisualizerView: View {
     // MARK: - Helper Functions
     
     private func requestPermissionAndScan() {
+        // Store reference to the main window BEFORE showing panel
+        let mainWindow = NSApp.keyWindow ?? NSApp.windows.first(where: { $0.isVisible && $0.canBecomeKey })
+        
         // Activate app first to prevent window from hiding
         NSApp.activate(ignoringOtherApps: true)
         
@@ -392,19 +396,27 @@ struct DiskVisualizerView: View {
             panel.directoryURL = homeURL
         }
         
-        panel.begin { response in
-            // Re-activate app after panel closes to restore window focus
-            DispatchQueue.main.async {
-                NSApp.activate(ignoringOtherApps: true)
-                
-                // Bring main window back to front
-                if let mainWindow = NSApp.windows.first(where: { $0.title == "Mintify" || $0.contentViewController != nil }) {
-                    mainWindow.makeKeyAndOrderFront(nil)
-                }
+        // Use beginSheetModal if we have a window, otherwise use begin
+        if let window = mainWindow {
+            panel.beginSheetModal(for: window) { response in
+                // Start scan regardless (we'll show what we can access)
+                self.startScan()
             }
-            
-            // Start scan regardless (we'll show what we can access)
-            self.startScan()
+        } else {
+            panel.begin { response in
+                // Re-activate app after panel closes to restore window focus
+                DispatchQueue.main.async {
+                    NSApp.activate(ignoringOtherApps: true)
+                    
+                    // Bring main window back to front
+                    if let window = mainWindow {
+                        window.makeKeyAndOrderFront(nil)
+                    }
+                }
+                
+                // Start scan regardless (we'll show what we can access)
+                self.startScan()
+            }
         }
     }
     

@@ -1,56 +1,7 @@
 import SwiftUI
 
-struct AppTheme {
-    // MARK: - Backgrounds
-    static let mainBackground = LinearGradient(
-        colors: [
-            Color(hex: "2A1B3D"), // Deep Purple
-            Color(hex: "44318D")  // Dark Violet
-        ],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
-    )
-    
-    // MARK: - Accents (Gradients)
-    static let storageGradient = LinearGradient(
-        colors: [Color(hex: "4CC9F0"), Color(hex: "4361EE")], // Cyan to Blue
-        startPoint: .top,
-        endPoint: .bottom
-    )
-    
-    static let memoryGradient = LinearGradient(
-        colors: [Color(hex: "F72585"), Color(hex: "7209B7")], // Pink to Purple
-        startPoint: .top,
-        endPoint: .bottom
-    )
-    
-    static let cpuGradient = LinearGradient(
-        colors: [Color(hex: "F7D754"), Color(hex: "FF9F1C")], // Yellow to Orange
-        startPoint: .top,
-        endPoint: .bottom
-    )
-    
-    static let primaryActionGradient = LinearGradient(
-        colors: [Color(hex: "EB6CA4"), Color(hex: "C5DAF7")], // Neon Pink to Tropical Blue
-        startPoint: .leading,
-        endPoint: .trailing
-    )
-    
-    static let mintifyGradient = LinearGradient(
-        colors: [Color(hex: "EB6CA4"), Color(hex: "7209B7")], // Pink -> Purple for Brand
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
-    )
-    
-    // MARK: - Colors
-    static let textPrimary = Color.white
-    static let textSecondary = Color.white.opacity(0.7)
-    static let cardBackground = Color.white.opacity(0.1)
-    static let cardBorder = Color.white.opacity(0.2)
-    
-    static let cleanPink = Color(hex: "EB6CA4")
-    static let cleanCyan = Color(hex: "4CC9F0")
-}
+// Note: AppTheme struct is now in ThemeManager.swift as a facade
+// This file only contains the Color hex extension
 
 // Helper for Hex Colors
 extension Color {

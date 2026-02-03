@@ -3,6 +3,7 @@ import SwiftUI
 /// Main content view with tab navigation
 struct MainContentView: View {
     @EnvironmentObject var appState: CleanerState
+    @ObservedObject var themeManager = ThemeManager.shared
     
     var body: some View {
         ZStack {
@@ -107,7 +108,7 @@ struct MainContentView: View {
             .padding(.bottom, 16)
         }
         .frame(width: 180)
-        .background(Color.black.opacity(0.2))
+        .background(AppTheme.sidebarBackground)
     }
 }
 

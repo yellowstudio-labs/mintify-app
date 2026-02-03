@@ -68,6 +68,9 @@ class PermissionManager: ObservableObject {
     
     func requestHomeAccess(completion: @escaping (Bool) -> Void) {
         DispatchQueue.main.async {
+            // Store reference to the main window BEFORE showing panel
+            let mainWindow = NSApp.keyWindow ?? NSApp.windows.first(where: { $0.isVisible && $0.canBecomeKey })
+            
             NSApp.activate(ignoringOtherApps: true)
             
             let openPanel = NSOpenPanel()
@@ -79,20 +82,28 @@ class PermissionManager: ObservableObject {
             openPanel.allowsMultipleSelection = false
             openPanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser
             
-            openPanel.begin { response in
-                DispatchQueue.main.async {
-                    NSApp.activate(ignoringOtherApps: true)
-                    if let mainWindow = NSApp.windows.first(where: { $0.title == "Mintify" || $0.contentViewController != nil }) {
-                        mainWindow.makeKeyAndOrderFront(nil)
-                    }
-                }
-                
+            let handleResponse: (NSApplication.ModalResponse) -> Void = { response in
                 if response == .OK, let url = openPanel.url {
                     self.saveBookmark(for: url)
                     self.checkPermissions()
                     completion(true)
                 } else {
                     completion(false)
+                }
+            }
+            
+            // Use beginSheetModal if we have a window, otherwise use begin
+            if let window = mainWindow {
+                openPanel.beginSheetModal(for: window, completionHandler: handleResponse)
+            } else {
+                openPanel.begin { response in
+                    DispatchQueue.main.async {
+                        NSApp.activate(ignoringOtherApps: true)
+                        if let window = mainWindow {
+                            window.makeKeyAndOrderFront(nil)
+                        }
+                    }
+                    handleResponse(response)
                 }
             }
         }

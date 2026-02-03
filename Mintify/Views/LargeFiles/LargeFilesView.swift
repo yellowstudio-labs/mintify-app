@@ -8,6 +8,7 @@ enum SizeUnit: String, CaseIterable {
 struct LargeFilesView: View {
     @EnvironmentObject var appState: CleanerState
     @EnvironmentObject var state: LargeFilesState
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var showConfirmDelete = false
     @State private var isDeleting = false
     @State private var deleteProgress: (current: Int, total: Int) = (0, 0)
@@ -142,19 +143,19 @@ struct LargeFilesView: View {
             } label: {
                 HStack(spacing: 4) {
                     Text("Sort:")
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(AppTheme.textSecondary)
                     Text(state.sortOption.rawValue)
-                        .foregroundColor(.white)
+                        .foregroundColor(AppTheme.textPrimary)
                     Image(systemName: "chevron.down")
                         .font(.system(size: 10))
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(AppTheme.textSecondary)
                 }
                 .font(.system(size: 12))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(
                     RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.white.opacity(0.1))
+                        .fill(AppTheme.overlayMedium)
                 )
             }
             .buttonStyle(.plain)
@@ -162,7 +163,7 @@ struct LargeFilesView: View {
             // File count
             Text("\(filteredFiles.count) files")
                 .font(.system(size: 12))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
             
             // Scan button
             Button(action: startScan) {
@@ -171,7 +172,7 @@ struct LargeFilesView: View {
                     Text(state.isScanning ? "Scanning..." : "Scan")
                 }
                 .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
@@ -194,7 +195,7 @@ struct LargeFilesView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Minimum Size")
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
                 .textCase(.uppercase)
                 
                 // Size input with unit toggle
@@ -203,13 +204,13 @@ struct LargeFilesView: View {
                     TextField("100", text: $state.sizeInputText)
                         .textFieldStyle(.plain)
                         .font(.system(size: 15, weight: .semibold, design: .monospaced))
-                        .foregroundColor(.white)
+                        .foregroundColor(AppTheme.textPrimary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 8)
                         .background(
                             RoundedRectangle(cornerRadius: 6)
-                                .fill(Color.white.opacity(0.1))
+                                .fill(AppTheme.overlayMedium)
                         )
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
@@ -222,7 +223,7 @@ struct LargeFilesView: View {
                             Button(action: { state.sizeUnit = unit }) {
                                 Text(unit.rawValue)
                                     .font(.system(size: 11, weight: .medium))
-                                    .foregroundColor(state.sizeUnit == unit ? .white : .white.opacity(0.5))
+                                    .foregroundColor(state.sizeUnit == unit ? .white : AppTheme.textSecondary)
                                     .frame(width: 32, height: 30)
                                     .background(
                                         RoundedRectangle(cornerRadius: 4)
@@ -235,7 +236,7 @@ struct LargeFilesView: View {
                     }
                     .background(
                         RoundedRectangle(cornerRadius: 6)
-                            .fill(Color.white.opacity(0.1))
+                            .fill(AppTheme.overlayMedium)
                     )
                 }
                 
@@ -272,7 +273,7 @@ struct LargeFilesView: View {
                         Text("Scan Files")
                     }
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
                     .background(
@@ -284,13 +285,13 @@ struct LargeFilesView: View {
             }
             
             Divider()
-                .background(Color.white.opacity(0.1))
+                .background(AppTheme.overlayMedium)
             
             // Category Filter
             VStack(alignment: .leading, spacing: 8) {
                 Text("File Type")
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(AppTheme.textSecondary)
                     .textCase(.uppercase)
                 
                 ForEach(FileTypeCategory.allCases) { category in
@@ -312,10 +313,10 @@ struct LargeFilesView: View {
                             if count > 0 {
                                 Text("\(count)")
                                     .font(.system(size: 10))
-                                    .foregroundColor(.white.opacity(0.5))
+                                    .foregroundColor(AppTheme.textSecondary)
                             }
                         }
-                        .foregroundColor(state.selectedCategory == category ? .mint : .white.opacity(0.7))
+                        .foregroundColor(state.selectedCategory == category ? .mint : AppTheme.textSecondary)
                     }
                     .buttonStyle(.plain)
                 }
@@ -325,7 +326,7 @@ struct LargeFilesView: View {
         }
         .padding(16)
         .frame(width: 190)
-        .background(Color.black.opacity(0.15))
+        .background(AppTheme.sidebarBackground)
     }
     
     // MARK: - File List
@@ -365,11 +366,11 @@ struct LargeFilesView: View {
             
             Text("Scanning for large files...")
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
             
             Text(state.scanProgress)
                 .font(.caption)
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
             
             // Stop button
             Button(action: stopScan) {
@@ -378,7 +379,7 @@ struct LargeFilesView: View {
                     Text("Stop Scan")
                 }
                 .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(
@@ -399,15 +400,15 @@ struct LargeFilesView: View {
         VStack(spacing: 16) {
             Image(systemName: "doc.badge.clock")
                 .font(.system(size: 48))
-                .foregroundColor(.white.opacity(0.3))
+                .foregroundColor(AppTheme.textSecondary)
             
             Text("No large files found")
                 .font(.headline)
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(AppTheme.textSecondary)
             
             Text("Files larger than \(formattedMinSize) will appear here")
                 .font(.caption)
-                .foregroundColor(.white.opacity(0.4))
+                .foregroundColor(AppTheme.textSecondary)
             
             Button(action: startScan) {
                 HStack {
@@ -415,7 +416,7 @@ struct LargeFilesView: View {
                     Text("Scan Now")
                 }
                 .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(
@@ -438,7 +439,7 @@ struct LargeFilesView: View {
                     Image(systemName: state.selectedPaths.count == state.files.count && !state.files.isEmpty ? "checkmark.square.fill" : "square")
                         .foregroundColor(.mint)
                     Text("Select All")
-                        .foregroundColor(.white.opacity(0.7))
+                        .foregroundColor(AppTheme.textSecondary)
                 }
                 .font(.system(size: 12))
                 .padding(.vertical, 4)
@@ -454,10 +455,10 @@ struct LargeFilesView: View {
             if !selectedFiles.isEmpty {
                 Text("\(selectedFiles.count) selected")
                     .font(.system(size: 12))
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(AppTheme.textSecondary)
                 
                 Text("•")
-                    .foregroundColor(.white.opacity(0.3))
+                    .foregroundColor(AppTheme.textSecondary)
                 
                 Text(ByteCountFormatter.string(fromByteCount: selectedSize, countStyle: .file))
                     .font(.system(size: 14, weight: .semibold))
@@ -471,12 +472,12 @@ struct LargeFilesView: View {
                     Text("Move to Trash")
                 }
                 .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
                 .background(
                     Capsule()
-                        .fill(selectedFiles.isEmpty ? Color.white.opacity(0.1) : Color.red.opacity(0.8))
+                        .fill(selectedFiles.isEmpty ? AppTheme.overlayMedium : Color.red.opacity(0.8))
                 )
             }
             .buttonStyle(.plain)
@@ -595,7 +596,7 @@ struct LargeFileRow: View {
             // Checkbox
             Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                 .font(.system(size: 18))
-                .foregroundColor(isSelected ? .mint : .white.opacity(0.3))
+                .foregroundColor(isSelected ? .mint : AppTheme.textSecondary)
             
             // File icon
             Image(nsImage: file.icon)
@@ -607,12 +608,12 @@ struct LargeFileRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(file.name)
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .lineLimit(1)
                 
                 Text(file.url.deletingLastPathComponent().path.replacingOccurrences(of: FileManager.default.homeDirectoryForCurrentUser.path, with: "~"))
                     .font(.system(size: 11))
-                    .foregroundColor(.white.opacity(0.4))
+                    .foregroundColor(AppTheme.textSecondary)
                     .lineLimit(1)
             }
             
@@ -622,13 +623,13 @@ struct LargeFileRow: View {
             if !isHovered {
                 Text(file.formattedDate)
                     .font(.system(size: 11))
-                    .foregroundColor(.white.opacity(0.4))
+                    .foregroundColor(AppTheme.textSecondary)
             }
             
             // Size badge
             Text(file.formattedSize)
                 .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 4)
                 .background(
@@ -644,14 +645,14 @@ struct LargeFileRow: View {
                             .font(.system(size: 12))
                     }
                     .buttonStyle(.plain)
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(AppTheme.textSecondary)
                     
                     Button(action: onOpen) {
                         Image(systemName: "arrow.up.forward.square")
                             .font(.system(size: 12))
                     }
                     .buttonStyle(.plain)
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(AppTheme.textSecondary)
                 }
             }
         }
@@ -659,7 +660,7 @@ struct LargeFileRow: View {
         .padding(.vertical, 8)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .fill(isSelected ? Color.mint.opacity(0.1) : (isHovered ? Color.white.opacity(0.05) : Color.clear))
+                .fill(isSelected ? Color.mint.opacity(0.1) : (isHovered ? AppTheme.overlayLight : Color.clear))
         )
         .contentShape(Rectangle())
         .onTapGesture {
@@ -688,12 +689,12 @@ struct PresetButton: View {
         Button(action: action) {
             Text("\(text)\(unit.rawValue)")
                 .font(.system(size: 10))
-                .foregroundColor(isSelected ? .mint : .white.opacity(0.6))
+                .foregroundColor(isSelected ? .mint : AppTheme.textSecondary)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 5)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(isSelected ? Color.mint.opacity(0.2) : Color.white.opacity(0.05))
+                        .fill(isSelected ? Color.mint.opacity(0.2) : AppTheme.overlayLight)
                 )
         }
         .buttonStyle(.plain)
@@ -718,12 +719,12 @@ struct SmallPresetButton: View {
         Button(action: action) {
             Text(label)
                 .font(.system(size: 10, weight: .medium))
-                .foregroundColor(isSelected ? .mint : .white.opacity(0.6))
+                .foregroundColor(isSelected ? .mint : AppTheme.textSecondary)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(isSelected ? Color.mint.opacity(0.2) : Color.white.opacity(0.05))
+                        .fill(isSelected ? Color.mint.opacity(0.2) : AppTheme.overlayLight)
                 )
         }
         .buttonStyle(.plain)

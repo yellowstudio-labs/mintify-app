@@ -11,6 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var mainWindow: NSWindow?
     private var settingsWindow: NSWindow?
     private var aboutWindow: NSWindow?
+    private var welcomeWindow: NSWindow?
     
     // Menu Bar Items
     private var statusItem: NSStatusItem?
@@ -23,6 +24,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Start as accessory (menu bar only, no dock icon)
         NSApp.setActivationPolicy(.accessory)
         setupMenuBar()
+        
+        // Show welcome screen on first launch, or open menu bar on subsequent launches
+        if !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showWelcomeWindow()
+            }
+        } else {
+            // On subsequent launches, open menu bar popup
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.toggleWindow(nil)
+            }
+        }
     }
     
     func setupMenuBar() {
@@ -236,7 +249,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let window = NSWindow(contentViewController: hostingController)
         window.title = "Settings"
         window.styleMask = [.titled, .closable, .fullSizeContentView] as NSWindow.StyleMask
-        window.setContentSize(NSSize(width: 450, height: 550))
+        window.setContentSize(NSSize(width: 620, height: 560))
         window.center()
         window.isReleasedWhenClosed = false
         window.titlebarAppearsTransparent = true
@@ -247,6 +260,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.delegate = self
         
         self.settingsWindow = window
+        
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    func showWelcomeWindow() {
+        // Show dock icon
+        NSApp.setActivationPolicy(.regular)
+        
+        if let window = welcomeWindow, window.isVisible {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+        
+        // Create @State binding for isPresented using a wrapper class
+        let welcomeState = WelcomeWindowState()
+        
+        let welcomeView = WelcomeViewWrapper(state: welcomeState)
+            .environmentObject(PermissionManager.shared)
+        
+        let hostingController = NSHostingController(rootView: welcomeView)
+        
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "Welcome"
+        window.styleMask = [.titled, .closable, .fullSizeContentView] as NSWindow.StyleMask
+        window.setContentSize(NSSize(width: 520, height: 600))
+        window.center()
+        window.isReleasedWhenClosed = false
+        window.titlebarAppearsTransparent = true
+        window.titleVisibility = .hidden
+        window.backgroundColor = NSColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
+        
+        window.delegate = self
+        welcomeState.window = window
+        
+        self.welcomeWindow = window
         
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)

@@ -28,7 +28,7 @@ struct DeleteProgressOverlay: View {
                 // Message
                 Text(message)
                     .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                 
                 // Progress info
                 if total > 0 {

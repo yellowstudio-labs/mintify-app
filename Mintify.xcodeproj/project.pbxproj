@@ -16,45 +16,57 @@
 		2B8247501519686B5169A63D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12580B80BB73D27618175C0 /* SettingsView.swift */; };
 		2DC04C16FF4D6DECB420C9E4 /* DiskVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B97E7ED4C2D8C679A534CC /* DiskVisualizerView.swift */; };
 		2E2F673D89409647A314056F /* PermissionBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA695AD03E5C40E20BA5E65A /* PermissionBannerView.swift */; };
+		2ED8E07899C8FD051FEEE642 /* SunsetTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8CD13EBEF1B59F6BCFEA2 /* SunsetTheme.swift */; };
 		3D007DA188787F602580083B /* DuplicateFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7367268D833793C408F959 /* DuplicateFile.swift */; };
 		3FA1F0BD4A2A25FD5E488807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41AC43FCF65C1DB10C2B9CCC /* Assets.xcassets */; };
 		4270CC3B59E4D83A0968C2E3 /* CleanableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A63848698601B986D5BB3 /* CleanableItem.swift */; };
+		5B7C8D6FAA0457D9CFF932DC /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C81F08A7456CED947C0563 /* ThemeManager.swift */; };
 		6365792639957A1758D35268 /* DiskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A06C098653EFCB3D2EDE8E1 /* DiskItem.swift */; };
 		642491028E94215268F37226 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED4AD29F729CB41EA9023F /* VisualEffectView.swift */; };
 		6572E10D3FB717392E16508B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC01E88893A8D7A1A41140 /* AppDelegate.swift */; };
 		65A9E0F01DE211D1AF965344 /* CategoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0036E920FDE268879EE1B52 /* CategoryCardView.swift */; };
+		66039F5130279AD53D68DF0E /* PrideTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50158055E75277A7569E6DE /* PrideTheme.swift */; };
 		6F0AAB38DCA952C167324309 /* LaunchAtLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE5BFF863F4AF3352071D27 /* LaunchAtLoginHelper.swift */; };
 		7159F9C1F219B677EA1E88A3 /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AE29C3E5C1FAE393CF8ED /* MainTab.swift */; };
 		71A1CCDB5C9FB31AB7434C4E /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E549B0A5EC5065E47AF5FF1 /* MainContentView.swift */; };
+		71BEA78F448987FAB348D626 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DE025C890BD59835F2C8D8 /* WelcomeView.swift */; };
 		756BAB230F713F09C2F95952 /* DuplicateScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E0C340C8740A42488895FA /* DuplicateScanner.swift */; };
 		768CE92C0BC753807262EBB7 /* DuplicateFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408602E079CDBEF76A93EC20 /* DuplicateFilesView.swift */; };
 		78411176EDA02A92C0A6388F /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AC1D9F6110C72CCC72363 /* AboutView.swift */; };
 		7BBC57A1EEB0481D5B162369 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC76694DB14724FC79531E71 /* AppInfo.swift */; };
+		7D7C2C1512330864219C3107 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E0DFE594461464A6AB29A /* LightTheme.swift */; };
+		81E0E80D936D59F505ACBE46 /* AMOLEDTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BCA44D51F0E8EEF9D042D /* AMOLEDTheme.swift */; };
 		8BB406457386551F2EA82AB5 /* SystemStatsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FC92D975D0F2C01EBB845 /* SystemStatsHelper.swift */; };
+		8D95C43013C5F982EEAA89D2 /* OceanTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1041735D3D4F7DB43F524B6 /* OceanTheme.swift */; };
 		96DCD44DC80B2ECDBB25C16A /* DiskSpaceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6F4ACD85B43318F75E43B /* DiskSpaceState.swift */; };
 		9F1FE47393A9A62A641A2D39 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCE6EB89F9C4D5E1F36D7BD /* CircularProgressView.swift */; };
 		A69A05443BEAA034657AB009 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2738CBCD3B724FD6215DB243 /* PermissionManager.swift */; };
 		A9926A643EE939ADE0B98072 /* CustomOverlayWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3B43148BF4890A4937B31E /* CustomOverlayWindow.swift */; };
 		AA37F183FA3C823C5D378BBD /* DetailStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713D2F24C8202D439D909E09 /* DetailStatsView.swift */; };
+		B1885841D5D54C6D167D6A33 /* NatureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FB4640DAA9C19AD01C2372 /* NatureTheme.swift */; };
 		C4598D8E7B0D875937A64BF8 /* AppUninstallerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27927D3F7B9E3ED270F2F327 /* AppUninstallerView.swift */; };
 		C909935765A68A9B927845ED /* AppUninstallScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BEEAF38A5A2C12B0019027 /* AppUninstallScanner.swift */; };
 		C9E9991F113873DC9F583BF8 /* DiskScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE1D1814BA997D284C93DF /* DiskScanner.swift */; };
 		CB7AE86F2401981BF6C23FAE /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53392224C3E5C2A90124F58B /* MenuBarView.swift */; };
 		CD877567A3FC581D4F8F4CF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787DE022B68B0B3384C5447C /* ContentView.swift */; };
 		D27A4860C80BF830DDF47B2F /* CleanerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC40C056AB52A9BE039E41 /* CleanerState.swift */; };
+		E4C484D74DC2FFF5D63BB067 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068013A859E8B121FA0541E5 /* DarkTheme.swift */; };
 		E7D44AFA4622910CFE6013A8 /* MintifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41E23247885A90045A363E4 /* MintifyApp.swift */; };
 		EBB7E5AFCA53E1252C9D13F8 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8468FBA79AA7AEEA033570 /* AppTheme.swift */; };
 		EC2F42BF2F5848DAD17FE71C /* AppUninstallerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619A29CCDD9999234D865914 /* AppUninstallerState.swift */; };
 		ED1905DCA6C3387B6A328A46 /* LargeFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B811656098B42D1D6DE616 /* LargeFilesView.swift */; };
 		F6725C0F0C0C8B9A4036C97D /* DuplicateFinderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EAF7B9ADBD017195F37D5 /* DuplicateFinderState.swift */; };
 		FC9A516136696D4463EFA2B3 /* StorageScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C532EFA2936967AACDAFDECB /* StorageScanner.swift */; };
+		FF58ABDB3BFCFD4F9AE7B02F /* AppThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE8C14A773319F40241590 /* AppThemeProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		055FC92D975D0F2C01EBB845 /* SystemStatsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemStatsHelper.swift; sourceTree = "<group>"; };
+		068013A859E8B121FA0541E5 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		07937B646A9E571FCA388D93 /* DeleteProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProgressOverlay.swift; sourceTree = "<group>"; };
 		07DC40C056AB52A9BE039E41 /* CleanerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerState.swift; sourceTree = "<group>"; };
 		0B0A63848698601B986D5BB3 /* CleanableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanableItem.swift; sourceTree = "<group>"; };
+		22DE025C890BD59835F2C8D8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		22ED4AD29F729CB41EA9023F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		2738CBCD3B724FD6215DB243 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		27927D3F7B9E3ED270F2F327 /* AppUninstallerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUninstallerView.swift; sourceTree = "<group>"; };
@@ -64,14 +76,17 @@
 		37A632FD622D1CB2E662A66B /* LargeFilesScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeFilesScanner.swift; sourceTree = "<group>"; };
 		387AC1D9F6110C72CCC72363 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		39B97E7ED4C2D8C679A534CC /* DiskVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskVisualizerView.swift; sourceTree = "<group>"; };
+		3ED8CD13EBEF1B59F6BCFEA2 /* SunsetTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetTheme.swift; sourceTree = "<group>"; };
 		408602E079CDBEF76A93EC20 /* DuplicateFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFilesView.swift; sourceTree = "<group>"; };
 		41AC43FCF65C1DB10C2B9CCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		449F14B069321C80DBE9320D /* Mintify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mintify.entitlements; sourceTree = "<group>"; };
 		53392224C3E5C2A90124F58B /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		56E0C340C8740A42488895FA /* DuplicateScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateScanner.swift; sourceTree = "<group>"; };
 		619A29CCDD9999234D865914 /* AppUninstallerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUninstallerState.swift; sourceTree = "<group>"; };
+		697BCA44D51F0E8EEF9D042D /* AMOLEDTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMOLEDTheme.swift; sourceTree = "<group>"; };
 		713D2F24C8202D439D909E09 /* DetailStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStatsView.swift; sourceTree = "<group>"; };
 		74121E110BC656FA7FC0475B /* TimeInterval+Uptime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Uptime.swift"; sourceTree = "<group>"; };
+		77C81F08A7456CED947C0563 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		787DE022B68B0B3384C5447C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7A06C098653EFCB3D2EDE8E1 /* DiskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskItem.swift; sourceTree = "<group>"; };
 		7DEE1D1814BA997D284C93DF /* DiskScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskScanner.swift; sourceTree = "<group>"; };
@@ -79,8 +94,11 @@
 		87CFFCC9605D002FFE6FBA7A /* Mintify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mintify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC01E88893A8D7A1A41140 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93C6F4ACD85B43318F75E43B /* DiskSpaceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskSpaceState.swift; sourceTree = "<group>"; };
+		99FB4640DAA9C19AD01C2372 /* NatureTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatureTheme.swift; sourceTree = "<group>"; };
 		9D7367268D833793C408F959 /* DuplicateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFile.swift; sourceTree = "<group>"; };
 		9E549B0A5EC5065E47AF5FF1 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
+		A50158055E75277A7569E6DE /* PrideTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrideTheme.swift; sourceTree = "<group>"; };
+		A95E0DFE594461464A6AB29A /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		B86651E8AD6291FF6A1B6130 /* LargeFilesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeFilesState.swift; sourceTree = "<group>"; };
 		C12580B80BB73D27618175C0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C532EFA2936967AACDAFDECB /* StorageScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageScanner.swift; sourceTree = "<group>"; };
@@ -88,6 +106,8 @@
 		C5BEEAF38A5A2C12B0019027 /* AppUninstallScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUninstallScanner.swift; sourceTree = "<group>"; };
 		CA695AD03E5C40E20BA5E65A /* PermissionBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionBannerView.swift; sourceTree = "<group>"; };
 		CC76694DB14724FC79531E71 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		D1041735D3D4F7DB43F524B6 /* OceanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OceanTheme.swift; sourceTree = "<group>"; };
+		D8AE8C14A773319F40241590 /* AppThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeProtocol.swift; sourceTree = "<group>"; };
 		E0036E920FDE268879EE1B52 /* CategoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCardView.swift; sourceTree = "<group>"; };
 		E407AC50198F61CD8EC2AFCB /* LargeFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeFile.swift; sourceTree = "<group>"; };
 		E7B811656098B42D1D6DE616 /* LargeFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeFilesView.swift; sourceTree = "<group>"; };
@@ -114,6 +134,20 @@
 			path = LargeFiles;
 			sourceTree = "<group>";
 		};
+		1E23F50DF70BE75BDA4C6907 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				697BCA44D51F0E8EEF9D042D /* AMOLEDTheme.swift */,
+				068013A859E8B121FA0541E5 /* DarkTheme.swift */,
+				A95E0DFE594461464A6AB29A /* LightTheme.swift */,
+				99FB4640DAA9C19AD01C2372 /* NatureTheme.swift */,
+				D1041735D3D4F7DB43F524B6 /* OceanTheme.swift */,
+				A50158055E75277A7569E6DE /* PrideTheme.swift */,
+				3ED8CD13EBEF1B59F6BCFEA2 /* SunsetTheme.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
 		357D337723A8945DD018EDB2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +159,7 @@
 				520CA003202902CA4398F527 /* Main */,
 				6ED262FB4EB820AC2BBACAD9 /* MemoryOptimizer */,
 				9D618B02C257AB40EA87D178 /* MenuBar */,
+				5A954C6F13831AC78CB2B580 /* Onboarding */,
 				8C327A64DF9F55D46E1B3B39 /* Settings */,
 				8B4608BB5BC20BFB6A9DFD2C /* Shared */,
 			);
@@ -145,6 +180,14 @@
 				9E549B0A5EC5065E47AF5FF1 /* MainContentView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		5A954C6F13831AC78CB2B580 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				22DE025C890BD59835F2C8D8 /* WelcomeView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		6ED262FB4EB820AC2BBACAD9 /* MemoryOptimizer */ = {
@@ -192,10 +235,13 @@
 			isa = PBXGroup;
 			children = (
 				EE8468FBA79AA7AEEA033570 /* AppTheme.swift */,
+				D8AE8C14A773319F40241590 /* AppThemeProtocol.swift */,
 				2FCE6EB89F9C4D5E1F36D7BD /* CircularProgressView.swift */,
 				07937B646A9E571FCA388D93 /* DeleteProgressOverlay.swift */,
 				CA695AD03E5C40E20BA5E65A /* PermissionBannerView.swift */,
+				77C81F08A7456CED947C0563 /* ThemeManager.swift */,
 				22ED4AD29F729CB41EA9023F /* VisualEffectView.swift */,
+				1E23F50DF70BE75BDA4C6907 /* Themes */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -371,10 +417,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E0E80D936D59F505ACBE46 /* AMOLEDTheme.swift in Sources */,
 				78411176EDA02A92C0A6388F /* AboutView.swift in Sources */,
 				6572E10D3FB717392E16508B /* AppDelegate.swift in Sources */,
 				7BBC57A1EEB0481D5B162369 /* AppInfo.swift in Sources */,
 				EBB7E5AFCA53E1252C9D13F8 /* AppTheme.swift in Sources */,
+				FF58ABDB3BFCFD4F9AE7B02F /* AppThemeProtocol.swift in Sources */,
 				C909935765A68A9B927845ED /* AppUninstallScanner.swift in Sources */,
 				EC2F42BF2F5848DAD17FE71C /* AppUninstallerState.swift in Sources */,
 				C4598D8E7B0D875937A64BF8 /* AppUninstallerView.swift in Sources */,
@@ -384,6 +432,7 @@
 				D27A4860C80BF830DDF47B2F /* CleanerState.swift in Sources */,
 				CD877567A3FC581D4F8F4CF7 /* ContentView.swift in Sources */,
 				A9926A643EE939ADE0B98072 /* CustomOverlayWindow.swift in Sources */,
+				E4C484D74DC2FFF5D63BB067 /* DarkTheme.swift in Sources */,
 				0E0BC4C91B360BDE73EC481E /* DeleteProgressOverlay.swift in Sources */,
 				AA37F183FA3C823C5D378BBD /* DetailStatsView.swift in Sources */,
 				6365792639957A1758D35268 /* DiskItem.swift in Sources */,
@@ -399,18 +448,25 @@
 				25305A035541DBC6449FC0CA /* LargeFilesState.swift in Sources */,
 				ED1905DCA6C3387B6A328A46 /* LargeFilesView.swift in Sources */,
 				6F0AAB38DCA952C167324309 /* LaunchAtLoginHelper.swift in Sources */,
+				7D7C2C1512330864219C3107 /* LightTheme.swift in Sources */,
 				71A1CCDB5C9FB31AB7434C4E /* MainContentView.swift in Sources */,
 				7159F9C1F219B677EA1E88A3 /* MainTab.swift in Sources */,
 				09EE65D3B13A8AFAABE48AFA /* MemoryOptimizerView.swift in Sources */,
 				CB7AE86F2401981BF6C23FAE /* MenuBarView.swift in Sources */,
 				E7D44AFA4622910CFE6013A8 /* MintifyApp.swift in Sources */,
+				B1885841D5D54C6D167D6A33 /* NatureTheme.swift in Sources */,
+				8D95C43013C5F982EEAA89D2 /* OceanTheme.swift in Sources */,
 				2E2F673D89409647A314056F /* PermissionBannerView.swift in Sources */,
 				A69A05443BEAA034657AB009 /* PermissionManager.swift in Sources */,
+				66039F5130279AD53D68DF0E /* PrideTheme.swift in Sources */,
 				2B8247501519686B5169A63D /* SettingsView.swift in Sources */,
 				FC9A516136696D4463EFA2B3 /* StorageScanner.swift in Sources */,
+				2ED8E07899C8FD051FEEE642 /* SunsetTheme.swift in Sources */,
 				8BB406457386551F2EA82AB5 /* SystemStatsHelper.swift in Sources */,
+				5B7C8D6FAA0457D9CFF932DC /* ThemeManager.swift in Sources */,
 				0E6A6965E8C2F3CA33A7D709 /* TimeInterval+Uptime.swift in Sources */,
 				642491028E94215268F37226 /* VisualEffectView.swift in Sources */,
+				71BEA78F448987FAB348D626 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

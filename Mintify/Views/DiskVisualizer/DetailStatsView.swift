@@ -278,7 +278,7 @@ struct DetailStatsView: View {
                     }) {
                         Text(appState.hasScanned && appState.totalCleanableSize > 0 ? "Clean" : "Scan")
                             .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(.white)
+                            .foregroundColor(AppTheme.textPrimary)
                             .padding(.horizontal, 14)
                             .padding(.vertical, 6)
                             .background(

@@ -5,6 +5,7 @@ private let sizeColumnWidth: CGFloat = 70
 
 struct CategoryCardView: View {
     @Binding var category: CleanableCategory
+    @ObservedObject var themeManager = ThemeManager.shared
     var onDelete: (String) -> Void
     @State private var isExpanded = false
     @State private var isHovered = false
@@ -123,7 +124,7 @@ struct CategoryCardView: View {
                         
                         if index < category.items.count - 1 {
                             Divider()
-                                .background(Color.white.opacity(0.05))
+                                .background(AppTheme.overlayMedium.opacity(0.5))
                                 .padding(.leading, 52)
                         }
                     }
@@ -155,6 +156,7 @@ struct CategoryCardView: View {
 
 struct ItemRowView: View {
     @EnvironmentObject var appState: CleanerState
+    @ObservedObject var themeManager = ThemeManager.shared
     @Binding var item: CleanableItem
     var onDelete: (String) -> Void
     var accentColor: Color
@@ -173,14 +175,14 @@ struct ItemRowView: View {
                 
                 Text(item.name)
                     .font(.system(size: 13))
-                    .foregroundColor(.white.opacity(0.9))
+                    .foregroundColor(AppTheme.textPrimary)
                     .lineLimit(1)
                 
                 Spacer()
                 
                 Text(item.formattedSize)
                     .font(.system(size: 12, design: .rounded))
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(AppTheme.textSecondary)
                     .frame(width: sizeColumnWidth, alignment: .trailing)
                 
                 // Action buttons
@@ -229,11 +231,11 @@ struct ItemRowView: View {
                             if isLoadingSubItems {
                                 ProgressView()
                                     .controlSize(.mini)
-                                    .tint(.white.opacity(0.6))
+                                    .tint(AppTheme.textSecondary)
                             } else {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 10))
-                                    .foregroundColor(.white.opacity(0.5))
+                                    .foregroundColor(AppTheme.textSecondary)
                                     .rotationEffect(.degrees(isExpanded ? 90 : 0))
                             }
                         }
@@ -263,7 +265,7 @@ struct ItemRowView: View {
                     if subItems.count > 15 {
                         Text("... and \(subItems.count - 15) more")
                             .font(.caption2)
-                            .foregroundColor(.white.opacity(0.5))
+                            .foregroundColor(AppTheme.textSecondary)
                             .padding(.leading, 52)
                             .padding(.vertical, 6)
                     }
@@ -421,6 +423,7 @@ struct ItemRowView: View {
 }
 
 struct SubItemRowView: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let name: String
     let size: Int64
     let path: String
@@ -431,19 +434,19 @@ struct SubItemRowView: View {
         HStack(spacing: 8) {
             Image(systemName: "doc.fill")
                 .font(.system(size: 10))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
                 .frame(width: 16)
             
             Text(name)
                 .font(.system(size: 12))
-                .foregroundColor(.white.opacity(0.7))
+                .foregroundColor(AppTheme.textPrimary)
                 .lineLimit(1)
             
             Spacer()
             
             Text(ByteCountFormatter.string(fromByteCount: size, countStyle: .file))
                 .font(.system(size: 11, design: .rounded))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
                 .frame(width: sizeColumnWidth, alignment: .trailing)
             
             HStack(spacing: 6) {

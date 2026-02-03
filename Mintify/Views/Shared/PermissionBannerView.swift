@@ -17,7 +17,7 @@ struct PermissionBannerView: View {
                 
                 Text("Click + to add Mintify, then enable it to scan Trash")
                     .font(.system(size: 11))
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(AppTheme.textSecondary)
             }
             
             Spacer()
@@ -38,7 +38,7 @@ struct PermissionBannerView: View {
             Button(action: onDismiss) {
                 Image(systemName: "xmark")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(AppTheme.textSecondary)
                     .frame(width: 20, height: 20)
             }
             .buttonStyle(.plain)

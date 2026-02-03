@@ -3,6 +3,7 @@ import SwiftUI
 /// View for App Uninstaller feature
 struct AppUninstallerView: View {
     @EnvironmentObject var state: AppUninstallerState
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var isRemoving = false
     @State private var showRemoveConfirm = false
     @State private var removeResult: (success: Int, failed: Int, revealed: Bool)?
@@ -92,7 +93,7 @@ struct AppUninstallerView: View {
                         Text("Scan")
                     }
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(
@@ -157,7 +158,7 @@ struct AppUninstallerView: View {
                         Text("Scan")
                     }
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 10)
                     .background(
@@ -397,7 +398,7 @@ struct AppUninstallerView: View {
                     Text("Move to Trash")
                 }
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
                 .background(

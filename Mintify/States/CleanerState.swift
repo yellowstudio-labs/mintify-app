@@ -92,7 +92,7 @@ class CleanerState: ObservableObject {
                     // Only update UI if this scan is still valid
                     guard self.scanGeneration == currentGeneration else { return }
                     DispatchQueue.main.async {
-                        self.currentScanningCategory = "Scanning \(category.rawValue)/\(folderName)"
+                        self.currentScanningCategory = "\(category.rawValue)/\(folderName)"
                         self.scanProgress = (Double(index) + 0.5) / Double(categoriesToScan.count)
                     }
                 }

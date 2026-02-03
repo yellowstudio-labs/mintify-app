@@ -2,9 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var appState: CleanerState
+    @EnvironmentObject var permissionManager: PermissionManager
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var showConfirmClean = false
     @State private var cleanResult: (success: Int, failed: Int)?
     @State private var isCleaning = false
+    @State private var showPermissionAlert = false
     
     var body: some View {
         ZStack {
@@ -24,7 +27,7 @@ struct ContentView: View {
                     // Dashboard (Initial State)
                     ScrollView {
                         VStack(spacing: 24) {
-                            SystemStatusHero(onScan: { appState.startScan() })
+                            SystemStatusHero(onScan: { startScanWithPermissionCheck() })
                             CategoryGrid()
                         }
                         .padding(24)
@@ -54,6 +57,27 @@ struct ContentView: View {
             }
         } message: {
             Text("This will permanently delete the selected cached files. This action cannot be undone.")
+        }
+        .alert("Folder Access Required", isPresented: $showPermissionAlert) {
+            Button("Grant Access") {
+                permissionManager.requestHomeAccess { _ in }
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Mintify needs access to your Home folder to scan for files. Would you like to grant access now?")
+        }
+    }
+    
+    // MARK: - Permission Check
+    private func startScanWithPermissionCheck() {
+        if !permissionManager.hasHomeAccess {
+            permissionManager.requestHomeAccess { success in
+                if success {
+                    appState.startScan()
+                }
+            }
+        } else {
+            appState.startScan()
         }
     }
     
@@ -92,7 +116,7 @@ struct ContentView: View {
                 .padding(.vertical, 8)
                 .background(
                     Capsule()
-                        .fill(Color.white.opacity(0.1))
+                        .fill(AppTheme.overlayMedium)
                 )
             } else if !appState.categories.isEmpty {
                 // Only show Scan button after first scan has results
@@ -104,13 +128,13 @@ struct ContentView: View {
                     }
                     
                     // Scan/Rescan Button
-                    Button(action: { appState.startScan() }) {
+                    Button(action: { startScanWithPermissionCheck() }) {
                         HStack(spacing: 6) {
                             Image(systemName: "arrow.clockwise")
                             Text("Scan")
                         }
                         .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.white)
+                        .foregroundColor(AppTheme.textPrimary)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .background(
@@ -219,7 +243,7 @@ struct ContentView: View {
                         Text("Clean Now")
                     }
                     .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 12)
                     .background(
@@ -257,24 +281,25 @@ struct ContentView: View {
 // MARK: - Skeleton Category Card
 
 struct SkeletonCategoryCard: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var isAnimating = false
     
     var body: some View {
         HStack(spacing: 16) {
             // Icon Placeholder
             Circle()
-                .fill(Color.white.opacity(0.1))
+                .fill(AppTheme.overlayMedium)
                 .frame(width: 40, height: 40)
             
             VStack(alignment: .leading, spacing: 8) {
                 // Title Placeholder
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.white.opacity(0.1))
+                    .fill(AppTheme.overlayMedium)
                     .frame(width: 120, height: 16)
                 
                 // Subtitle Placeholder
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.white.opacity(0.05))
+                    .fill(AppTheme.overlayLight)
                     .frame(width: 180, height: 12)
             }
             
@@ -282,7 +307,7 @@ struct SkeletonCategoryCard: View {
             
             // Toggle Placeholder
             RoundedRectangle(cornerRadius: 4)
-                .fill(Color.white.opacity(0.1))
+                .fill(AppTheme.overlayMedium)
                 .frame(width: 40, height: 20)
         }
         .padding(16)
@@ -297,7 +322,7 @@ struct SkeletonCategoryCard: View {
                 Rectangle()
                     .fill(
                         LinearGradient(
-                            colors: [.clear, .white.opacity(0.05), .clear],
+                            colors: [.clear, AppTheme.overlayLight, .clear],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -318,6 +343,7 @@ struct SkeletonCategoryCard: View {
 // MARK: - Dashboard Components
 
 struct SystemStatusHero: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let onScan: () -> Void
     @State private var diskUsage: Double = 0.0 // 0.0 to 1.0
     @State private var freeSpace: String = "-- GB"
@@ -365,7 +391,7 @@ struct SystemStatusHero: View {
     private var chartView: some View {
         ZStack {
             Circle()
-                .stroke(Color.white.opacity(0.1), lineWidth: 12)
+                .stroke(AppTheme.overlayMedium, lineWidth: 12)
                 .frame(width: 140, height: 140)
             
             Circle()
@@ -381,7 +407,7 @@ struct SystemStatusHero: View {
             VStack(spacing: 2) {
                 Text("\(Int(diskUsage * 100))%")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                 Text("Used")
                     .font(.caption)
                     .foregroundColor(AppTheme.textSecondary)
@@ -415,7 +441,7 @@ struct SystemStatusHero: View {
                 Text("Scan Now")
             }
             .font(.system(size: 13, weight: .medium))
-            .foregroundColor(.white)
+            .foregroundColor(AppTheme.textPrimary)
             .padding(.horizontal, 24)
             .padding(.vertical, 10)
             .background(
@@ -444,6 +470,7 @@ struct SystemStatusHero: View {
 }
 
 struct StatusMetric: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let label: String
     let value: String
     let color: Color
@@ -461,6 +488,7 @@ struct StatusMetric: View {
 }
 
 struct CategoryGrid: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let columns = [
         GridItem(.flexible(), spacing: 16),
         GridItem(.flexible(), spacing: 16),
@@ -500,6 +528,7 @@ struct CategoryGrid: View {
 }
 
 struct DashboardCard: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let icon: String
     let title: String
     let subtitle: String

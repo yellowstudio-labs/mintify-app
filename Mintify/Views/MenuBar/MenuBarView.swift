@@ -3,6 +3,7 @@ import SwiftUI
 struct MenuBarView: View {
     @EnvironmentObject var appState: CleanerState
     @EnvironmentObject var permissionManager: PermissionManager
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var memoryStats: SystemStatsHelper.MemoryStats?
     @State private var cpuStats: SystemStatsHelper.CPUStats?
     @State private var storageStats: SystemStatsHelper.StorageStats?
@@ -158,6 +159,8 @@ struct MenuBarView: View {
 // MARK: - Subviews
 
 struct MenuBarHeaderView: View {
+    @ObservedObject var themeManager = ThemeManager.shared
+    
     var body: some View {
         HStack {
             HStack(spacing: 8) {
@@ -189,6 +192,7 @@ struct MenuBarHeaderView: View {
 }
 
 struct MenuBarDashboardView: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let storageStats: SystemStatsHelper.StorageStats?
     let memoryStats: SystemStatsHelper.MemoryStats?
     let cpuStats: SystemStatsHelper.CPUStats?
@@ -306,6 +310,7 @@ struct DashboardItemView: View {
 
 struct MenuBarDefaultContentView: View {
     @ObservedObject var appState: CleanerState
+    @ObservedObject var themeManager = ThemeManager.shared
     @EnvironmentObject var permissionManager: PermissionManager
     let memoryStats: SystemStatsHelper.MemoryStats?
     let storageStats: SystemStatsHelper.StorageStats?
@@ -399,7 +404,7 @@ struct MenuBarDefaultContentView: View {
                             Text(permissionManager.hasHomeAccess ? "Scan Now" : "Grant Access")
                                 .font(.system(size: 11, weight: .semibold))
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(AppTheme.textPrimary)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
                         .background(
@@ -418,7 +423,7 @@ struct MenuBarDefaultContentView: View {
                         HStack {
                             Image(systemName: "macwindow")
                                 .font(.system(size: 11, weight: .medium))
-                            Text("Mintify")
+                            Text("Mintify App")
                                 .font(.system(size: 11, weight: .medium))
                         }
                         .foregroundColor(AppTheme.textPrimary)
@@ -510,6 +515,7 @@ struct MenuBarDefaultContentView: View {
 }
 
 struct MenuBarFooterView: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     let lastScanTime: Date?
     
     var body: some View {

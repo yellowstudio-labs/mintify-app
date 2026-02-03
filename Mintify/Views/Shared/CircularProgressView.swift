@@ -58,7 +58,7 @@ struct CircularProgressView: View {
             ZStack {
                 // Background Circle
                 Circle()
-                    .stroke(Color.white.opacity(0.1), lineWidth: actualLineWidth)
+                    .stroke(AppTheme.overlayMedium, lineWidth: actualLineWidth)
                 
                 // Progress Circle
                 Circle()
@@ -86,7 +86,8 @@ struct CircularProgressView: View {
             .frame(width: actualSize, height: actualSize)
             .background(
                 Circle()
-                    .fill(Color.black.opacity(0.2))
+                    .fill(AppTheme.cardBackground)
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                     .padding(-actualLineWidth/2)
             )
             

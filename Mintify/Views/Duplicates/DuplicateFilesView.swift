@@ -4,6 +4,7 @@ import SwiftUI
 struct DuplicateFilesView: View {
     @EnvironmentObject var state: DuplicateFinderState
     @EnvironmentObject var permissionManager: PermissionManager
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var showConfirmDelete = false
     @State private var isRequestingPermission = false
     @State private var isDeleting = false
@@ -72,7 +73,7 @@ struct DuplicateFilesView: View {
                 }
                 
                 Divider()
-                    .background(Color.white.opacity(0.1))
+                    .background(AppTheme.overlayMedium)
                 
                 // Main content
                 HStack(spacing: 0) {
@@ -81,7 +82,7 @@ struct DuplicateFilesView: View {
                         filterSidebar
                         
                         Divider()
-                            .background(Color.white.opacity(0.1))
+                            .background(AppTheme.overlayMedium)
                     }
                     
                     // Content area
@@ -93,7 +94,7 @@ struct DuplicateFilesView: View {
                 }
                 
                 Divider()
-                    .background(Color.white.opacity(0.1))
+                    .background(AppTheme.overlayMedium)
                 
                 // Footer
                 footerView
@@ -140,19 +141,19 @@ struct DuplicateFilesView: View {
             } label: {
                 HStack(spacing: 4) {
                     Text("Sort:")
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(AppTheme.textSecondary)
                     Text(state.sortOption.rawValue)
-                        .foregroundColor(.white)
+                        .foregroundColor(AppTheme.textPrimary)
                     Image(systemName: "chevron.down")
                         .font(.system(size: 10))
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(AppTheme.textSecondary)
                 }
                 .font(.system(size: 12))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(
                     RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.white.opacity(0.1))
+                        .fill(AppTheme.overlayMedium)
                 )
             }
             .buttonStyle(.plain)
@@ -160,7 +161,7 @@ struct DuplicateFilesView: View {
             // Group count
             Text("\(filteredGroups.count) groups")
                 .font(.system(size: 12))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
             
             // Scan button
             if !state.isScanning {
@@ -170,7 +171,7 @@ struct DuplicateFilesView: View {
                         Text("Scan")
                     }
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(
@@ -193,7 +194,7 @@ struct DuplicateFilesView: View {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .fill(Color.white.opacity(0.1))
+                        .fill(AppTheme.overlayMedium)
                         .frame(height: 6)
                     
                     Capsule()
@@ -217,7 +218,7 @@ struct DuplicateFilesView: View {
                 
                 Text(state.scanStatus)
                     .font(.caption)
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(AppTheme.textSecondary)
                     .lineLimit(1)
                 
                 Spacer()
@@ -233,7 +234,7 @@ struct DuplicateFilesView: View {
                         Text("Stop")
                     }
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(.white)
+                    .foregroundColor(AppTheme.textPrimary)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .background(
@@ -255,7 +256,7 @@ struct DuplicateFilesView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("File Type")
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(AppTheme.textSecondary)
                 .textCase(.uppercase)
                 .padding(.top, 16)
             
@@ -272,7 +273,7 @@ struct DuplicateFilesView: View {
         }
         .padding(.horizontal, 12)
         .frame(width: 200)
-        .background(Color.black.opacity(0.2))
+        .background(AppTheme.sidebarBackground)
     }
     
     private func countForCategory(_ category: DuplicateCategory) -> Int {
@@ -288,15 +289,15 @@ struct DuplicateFilesView: View {
         VStack(spacing: 16) {
             Image(systemName: "doc.on.doc")
                 .font(.system(size: 48))
-                .foregroundColor(.white.opacity(0.3))
+                .foregroundColor(AppTheme.textSecondary)
             
             Text("Find Duplicate Files")
                 .font(.headline)
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(AppTheme.textSecondary)
             
             Text("Click Scan to search for duplicate files")
                 .font(.caption)
-                .foregroundColor(.white.opacity(0.4))
+                .foregroundColor(AppTheme.textSecondary)
             
             Button(action: startScan) {
                 HStack {
@@ -304,7 +305,7 @@ struct DuplicateFilesView: View {
                     Text("Scan Now")
                 }
                 .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(
@@ -320,7 +321,7 @@ struct DuplicateFilesView: View {
                 if !permissionManager.hasHomeAccess {
                     Text("Mintify needs access to your Home folder to find duplicates.")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(AppTheme.textSecondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
@@ -342,7 +343,7 @@ struct DuplicateFilesView: View {
                             Text("Grant Access")
                         }
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.white)
+                        .foregroundColor(AppTheme.textPrimary)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 6)
                         .background(
@@ -363,7 +364,7 @@ struct DuplicateFilesView: View {
                         Label("Documents", systemImage: "doc.text")
                     }
                     .font(.caption)
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(AppTheme.textSecondary)
                 }
             }
             .padding(.top, 20)
@@ -416,7 +417,7 @@ struct DuplicateFilesView: View {
                     Image(systemName: "checkmark.circle")
                         .foregroundColor(.mint)
                     Text("Auto-select Duplicates")
-                        .foregroundColor(.white.opacity(0.7))
+                        .foregroundColor(AppTheme.textSecondary)
                 }
                 .font(.system(size: 12))
                 .padding(.vertical, 4)
@@ -433,7 +434,7 @@ struct DuplicateFilesView: View {
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("\(state.duplicateGroups.count) groups • \(formattedTotalSize) recoverable")
                         .font(.caption)
-                        .foregroundColor(.white.opacity(0.5))
+                        .foregroundColor(AppTheme.textSecondary)
                     
                     if selectedCount > 0 {
                         Text("\(selectedCount) selected • \(formattedSelectedSize)")
@@ -450,7 +451,7 @@ struct DuplicateFilesView: View {
                     Text("Remove Selected")
                 }
                 .font(.system(size: 13, weight: .medium))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
@@ -589,16 +590,16 @@ struct FilterButton: View {
                 if count > 0 {
                     Text("\(count)")
                         .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(isSelected ? .white : .white.opacity(0.5))
+                        .foregroundColor(isSelected ? AppTheme.textPrimary : AppTheme.textSecondary)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
                         .background(
                             Capsule()
-                                .fill(isSelected ? Color.mint.opacity(0.5) : Color.white.opacity(0.1))
+                                .fill(isSelected ? Color.mint.opacity(0.5) : AppTheme.overlayMedium)
                         )
                 }
             }
-            .foregroundColor(isSelected ? .mint : .white.opacity(0.7))
+            .foregroundColor(isSelected ? .mint : AppTheme.textSecondary)
             .padding(.horizontal, 10)
             .padding(.vertical, 8)
             .background(
@@ -636,16 +637,16 @@ struct DuplicateGroupCard: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(group.files.first?.name ?? "Unknown")
                             .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(.white)
+                            .foregroundColor(AppTheme.textPrimary)
                             .lineLimit(1)
                         
                         HStack(spacing: 8) {
                             Text("\(group.fileCount) copies")
                                 .font(.caption)
-                                .foregroundColor(.white.opacity(0.5))
+                                .foregroundColor(AppTheme.textSecondary)
                             
                             Text("•")
-                                .foregroundColor(.white.opacity(0.3))
+                                .foregroundColor(AppTheme.textSecondary)
                             
                             Text(ByteCountFormatter.string(fromByteCount: group.duplicateSize, countStyle: .file) + " recoverable")
                                 .font(.caption)
@@ -658,18 +659,18 @@ struct DuplicateGroupCard: View {
                     // Category badge
                     Text(group.category.rawValue)
                         .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(AppTheme.textSecondary)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .background(
                             Capsule()
-                                .fill(Color.white.opacity(0.1))
+                                .fill(AppTheme.overlayMedium)
                         )
                     
                     // Expand chevron
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.system(size: 12))
-                        .foregroundColor(.white.opacity(0.5))
+                        .foregroundColor(AppTheme.textSecondary)
                 }
                 .padding(12)
                 .contentShape(Rectangle())
@@ -679,7 +680,7 @@ struct DuplicateGroupCard: View {
             // Expanded file list
             if isExpanded {
                 Divider()
-                    .background(Color.white.opacity(0.1))
+                    .background(AppTheme.overlayMedium)
                 
                 VStack(spacing: 0) {
                     ForEach(group.files.indices, id: \.self) { index in
@@ -691,7 +692,7 @@ struct DuplicateGroupCard: View {
                         
                         if index < group.files.count - 1 {
                             Divider()
-                                .background(Color.white.opacity(0.05))
+                                .background(AppTheme.overlayLight)
                                 .padding(.leading, 48)
                         }
                     }
@@ -700,11 +701,11 @@ struct DuplicateGroupCard: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white.opacity(0.05))
+                .fill(AppTheme.overlayLight)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                .stroke(AppTheme.overlayMedium, lineWidth: 1)
         )
     }
 }
@@ -729,7 +730,7 @@ struct DuplicateFileRow: View {
                 Button(action: { file.isSelected.toggle() }) {
                     Image(systemName: file.isSelected ? "checkmark.square.fill" : "square")
                         .font(.system(size: 14))
-                        .foregroundColor(file.isSelected ? .mint : .white.opacity(0.5))
+                        .foregroundColor(file.isSelected ? .mint : AppTheme.textSecondary)
                         .frame(width: 20, height: 20)
                         .contentShape(Rectangle())
                 }
@@ -745,7 +746,7 @@ struct DuplicateFileRow: View {
                     HStack(spacing: 6) {
                         Text(file.name)
                             .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(.white.opacity(0.9))
+                            .foregroundColor(AppTheme.textPrimary)
                             .lineLimit(1)
                             .truncationMode(.middle)
                         
@@ -768,11 +769,11 @@ struct DuplicateFileRow: View {
                     HStack(spacing: 12) {
                         Text(file.formattedSize)
                             .font(.system(size: 11))
-                            .foregroundColor(.white.opacity(0.6))
+                            .foregroundColor(AppTheme.textSecondary)
                         
                         Text(file.formattedCreatedDate)
                             .font(.system(size: 11))
-                            .foregroundColor(.white.opacity(0.4))
+                            .foregroundColor(AppTheme.textSecondary)
                     }
                     
                     // Actions
@@ -780,7 +781,7 @@ struct DuplicateFileRow: View {
                         Button(action: onReveal) {
                             Image(systemName: "folder")
                                 .font(.system(size: 12))
-                                .foregroundColor(.white.opacity(0.6))
+                                .foregroundColor(AppTheme.textSecondary)
                                 .frame(width: 24, height: 24)
                                 .contentShape(Rectangle())
                         }
@@ -790,7 +791,7 @@ struct DuplicateFileRow: View {
                         Button(action: onOpen) {
                             Image(systemName: "eye")
                                 .font(.system(size: 12))
-                                .foregroundColor(.white.opacity(0.6))
+                                .foregroundColor(AppTheme.textSecondary)
                                 .frame(width: 24, height: 24)
                                 .contentShape(Rectangle())
                         }
@@ -802,7 +803,7 @@ struct DuplicateFileRow: View {
                 // Bottom row: Path (full width)
                 Text(file.path)
                     .font(.system(size: 11))
-                    .foregroundColor(.white.opacity(0.4))
+                    .foregroundColor(AppTheme.textSecondary)
                     .lineLimit(1)
                     .truncationMode(.middle)
                     .padding(.top, 2)

@@ -2,6 +2,7 @@ import SwiftUI
 
 /// View for Memory Optimizer feature
 struct MemoryOptimizerView: View {
+    @ObservedObject var themeManager = ThemeManager.shared
     @State private var memoryStats: SystemStatsHelper.MemoryStats?
     @State private var detailedStats: SystemStatsHelper.DetailedMemoryStats?
     @State private var topProcesses: [SystemStatsHelper.AppProcess] = []
@@ -104,7 +105,7 @@ struct MemoryOptimizerView: View {
                     Text(isFreeing ? "Freeing..." : "Free Up Memory")
                 }
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(AppTheme.textPrimary)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(
@@ -125,22 +126,21 @@ struct MemoryOptimizerView: View {
             ZStack {
                 // Background Circle
                 Circle()
-                    .stroke(Color.white.opacity(0.1), lineWidth: 20)
+                    .stroke(AppTheme.overlayMedium, lineWidth: 12)
                 
                 // Used Memory Arc
                 Circle()
                     .trim(from: 0, to: CGFloat((memoryStats?.usedPercentage ?? 0) / 100.0))
                     .stroke(
                         AppTheme.memoryGradient,
-                        style: StrokeStyle(lineWidth: 20, lineCap: .round)
+                        style: StrokeStyle(lineWidth: 12, lineCap: .round)
                     )
                     .rotationEffect(.degrees(-90))
                     .shadow(color: AppTheme.cleanPink.opacity(0.4), radius: 8)
                 
-                // Center Text
                 VStack(spacing: 4) {
                     Text("\(Int(memoryStats?.usedPercentage ?? 0))%")
-                        .font(.system(size: 36, weight: .bold))
+                        .font(.system(size: 32, weight: .bold))
                         .foregroundColor(AppTheme.textPrimary)
                     
                     Text("Used")
@@ -148,7 +148,7 @@ struct MemoryOptimizerView: View {
                         .foregroundColor(AppTheme.textSecondary)
                 }
             }
-            .frame(width: 180, height: 180)
+            .frame(width: 140, height: 140)
             .padding(20)
             
             // Memory Info Cards
@@ -286,13 +286,13 @@ struct MemoryOptimizerView: View {
                         
                         if process.id != topProcesses.prefix(10).last?.id {
                             Divider()
-                                .background(Color.white.opacity(0.1))
+                                .background(AppTheme.overlayMedium)
                         }
                     }
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.white.opacity(0.03))
+                        .fill(AppTheme.overlayLight)
                 )
             }
         }
@@ -393,7 +393,7 @@ struct MemoryInfoCard: View {
         .padding(.vertical, 12)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white.opacity(0.03))
+                .fill(AppTheme.overlayLight)
         )
     }
 }
@@ -425,7 +425,7 @@ struct MemoryBreakdownRow: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 3)
-                        .fill(Color.white.opacity(0.1))
+                        .fill(AppTheme.overlayMedium)
                     
                     RoundedRectangle(cornerRadius: 3)
                         .fill(color)
